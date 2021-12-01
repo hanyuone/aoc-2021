@@ -20,5 +20,10 @@
 
 (defn -main
   "I don't do a whole lot ... yet."
-  [& args]
-  (println (increases-window (read/txt->nums "resources/1.txt"))))
+  [& [day part]]
+  (let [path (str "resources/" day ".txt")]
+    (println
+     (case day
+       "1"
+       (let [nums (read/txt->nums path)]
+         (if (= part "1") (increases nums) (increases-window nums)))))))
