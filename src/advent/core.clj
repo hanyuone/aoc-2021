@@ -20,7 +20,7 @@
 
 (defn -main
   "I don't do a whole lot ... yet."
-  [& [day part]]
+  [day part]
   (let [path (str "resources/" day ".txt")]
     (println
      (case day
