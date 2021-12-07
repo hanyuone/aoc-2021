@@ -10,7 +10,8 @@
 (defn txt->nums
   "Convert a newline-separated .txt file to a list of integers."
   [path]
-  (->> (txt->lines path)
+  (->> path
+       txt->lines
        (map #(Integer/parseInt %))))
 
 (defn line->row
@@ -36,3 +37,16 @@
         draws  (map #(Integer/parseInt %) (str/split (first lines) #","))
         boards (vec (map lines->board (partition 6 (rest lines))))]
     [draws boards]))
+
+(defn line->vent
+  [line]
+  (let [[x1 y1 x2 y2]
+        (map #(Integer/parseInt %)
+             (rest (re-matches #"(\d+),(\d+) -> (\d+),(\d+)" line)))]
+    [[x1 y1] [x2 y2]]))
+
+(defn txt->vents
+  [path]
+  (->> path
+       txt->lines
+       (map line->vent)))

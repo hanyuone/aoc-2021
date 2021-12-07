@@ -3,7 +3,8 @@
             [advent.tasks.day01 :refer [increases increases-window]]
             [advent.tasks.day02 :refer [sub-product sub-product-aim]]
             [advent.tasks.day03 :refer [consumption life-support]]
-            [advent.tasks.day04 :refer [first-score last-score]])
+            [advent.tasks.day04 :refer [first-score last-score]]
+            [advent.tasks.day05 :refer [overlaps]])
   (:gen-class))
 
 ;; Main function
@@ -24,4 +25,7 @@
          (if (= part "1") (consumption bits) (life-support bits)))
        "4"
        (let [[draws boards] (read/txt->bingo path)]
-         (if (= part "1") (first-score draws boards) (last-score draws boards)))))))
+         (if (= part "1") (first-score draws boards) (last-score draws boards)))
+       "5"
+       (let [vents (read/txt->vents path)]
+         (overlaps vents (= part "1")))))))
