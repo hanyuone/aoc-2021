@@ -1,4 +1,6 @@
-(ns advent.tasks.day05)
+(ns advent.tasks.day05
+  (:require [advent.math :refer [abs]]
+            [advent.seq :refer [count-by]]))
 
 ;; Day 5
 (defn vector-
@@ -8,8 +10,6 @@
 (defn vector+
   [[x1 y1] [x2 y2]]
   [(+ x1 x2) (+ y1 y2)])
-
-(defn abs [n] (max n (- n)))
 
 (defn normalise
   [[x y]]
@@ -40,5 +40,4 @@
        (apply concat)
        frequencies
        vals
-       (filter #(> % 1))
-       count))
+       (count-by #(> % 1))))

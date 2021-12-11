@@ -1,6 +1,5 @@
 (ns advent.tasks.day01)
 
-;; Day 1
 (defn increases
   "Finds the number of times an increase occurs in a list of integers."
   [nums]

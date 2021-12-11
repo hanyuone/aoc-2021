@@ -5,7 +5,7 @@
 (defn txt->lines
   "Convert a newline-separated .txt file to its lines."
   [path]
-  (str/split (slurp path) #"\n"))
+  (str/split-lines (slurp path)))
 
 (defn txt->nums
   "Convert a newline-separated .txt file to a list of integers."
@@ -39,6 +39,8 @@
     [draws boards]))
 
 (defn line->vent
+  "Convert a line into a 'vent' - a list containing two points, the start and
+   end of a series of vents."
   [line]
   (let [[x1 y1 x2 y2]
         (map #(Integer/parseInt %)
@@ -46,7 +48,29 @@
     [[x1 y1] [x2 y2]]))
 
 (defn txt->vents
+  "Convert a .txt file into a series of vents."
   [path]
   (->> path
        txt->lines
        (map line->vent)))
+
+(defn line->nums
+  "Convert a .txt file with only one line (that has integers separated by commas)
+   to a list of integers."
+  [path]
+  (as-> path v
+    (slurp v)
+    (str/split v #",")
+    (map #(Integer/parseInt %) v)))
+
+(defn line->display
+  [line]
+  (let [[patterns output] (str/split line #" \| ")]
+    [(str/split patterns #" ") (str/split output #" ")]))
+
+(defn txt->displays
+  "Converts a .txt file into data suitable for seven-segment displays."
+  [path]
+  (->> path
+       txt->lines
+       (map line->display)))

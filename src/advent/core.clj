@@ -1,12 +1,13 @@
 (ns advent.core
-  (:require [clojure.string :as str]
-            [advent.read :as read]
+  (:require [advent.read :as read]
             [advent.tasks.day01 :refer [increases increases-window]]
             [advent.tasks.day02 :refer [sub-product sub-product-aim]]
             [advent.tasks.day03 :refer [consumption life-support]]
             [advent.tasks.day04 :refer [first-score last-score]]
             [advent.tasks.day05 :refer [overlaps]]
-            [advent.tasks.day06 :refer [total-fish]])
+            [advent.tasks.day06 :refer [total-fish]]
+            [advent.tasks.day07 :refer [least-fuel-const least-fuel-linear]]
+            [advent.tasks.day08 :refer [easy-displays displays-sum]])
   (:gen-class))
 
 ;; Main function
@@ -32,5 +33,11 @@
        (let [vents (read/txt->vents path)]
          (overlaps vents (= part "1")))
        "6"
-       (let [fish (map #(Integer/parseInt %) (str/split (slurp path) #","))]
-         (total-fish fish (if (= part "1") 80 256)))))))
+       (let [fish (read/line->nums path)]
+         (total-fish fish (if (= part "1") 80 256)))
+       "7"
+       (let [crabs (read/line->nums path)]
+         (if (= part "1") (least-fuel-const crabs) (least-fuel-linear crabs)))
+       "8"
+       (let [displays (read/txt->displays path)]
+         (if (= part "1") (easy-displays displays) (displays-sum displays)))))))

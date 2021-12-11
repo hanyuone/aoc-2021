@@ -1,6 +1,5 @@
 (ns advent.tasks.day04)
 
-;; Day 4
 (def SIZE 5)
 
 (defn find-draw
@@ -46,6 +45,7 @@
        (reduce +)
        (* draw)))
 
+;; TODO: ideally rewrite these in a more functional way, without loop/let
 (defn first-score
   "Calculate the maximum Bingo score achievable, given a list of drawn balls
    and Bingo boards."
