@@ -74,3 +74,24 @@
   (->> path
        txt->lines
        (map line->display)))
+
+(defn line->levels
+  [line]
+  (vec (map #(Integer/parseInt %) (str/split line #""))))
+
+(defn wrap
+  "Surround a 2D grid of integers with ##Inf."
+  [grid]
+  (let [row-size     (+ (count (first grid)) 2)
+        wrapped-rows (map #(into [] (concat [##Inf] % [##Inf])) grid)
+        dummy-row    (vec (repeat row-size ##Inf))]
+    (into [] (concat [dummy-row] wrapped-rows [dummy-row]))))
+
+(defn txt->grid
+  "Converts a .txt file into a level grid."
+  [path]
+  (->> path
+       txt->lines
+       (map line->levels)
+       vec
+       wrap))

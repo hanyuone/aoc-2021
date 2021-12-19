@@ -1,4 +1,5 @@
-(ns advent.tasks.day04)
+(ns advent.tasks.day04
+  (:require [advent.coll :refer [transpose]]))
 
 (def SIZE 5)
 
@@ -16,11 +17,6 @@
   (if-let [[row col] (find-draw board draw)]
     (assoc-in board [row col 1] true)
     board))
-
-(defn transpose
-  "Transpose a 2D vector."
-  [board]
-  (apply mapv vector board))
 
 (defn row-marked?
   "Check if a row is completely marked on a Bingo board."

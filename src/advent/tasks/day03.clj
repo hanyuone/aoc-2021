@@ -1,6 +1,6 @@
 (ns advent.tasks.day03
   (:require [clojure.string :as str]
-            [advent.seq :refer [count-by]]))
+            [advent.coll :refer [count-by]]))
 
 (defn common-bit
   "In a sequence of bits, find the most common type of bit (1 or 0)."

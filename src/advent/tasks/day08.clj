@@ -1,6 +1,6 @@
 (ns advent.tasks.day08
   (:require [clojure.string :as str]
-            [advent.seq :refer [count-by]]))
+            [advent.coll :refer [count-by]]))
 
 (defn easy?
   "Given a seven-segment display, identify whether it is 'easy' - i.e. whether
@@ -59,15 +59,18 @@
 
 (defn fill-easy
   [mapping patterns]
-  (let [relevant (conj (vec (take 3 (sort-by count patterns))) "abcdefg")
-        missing  [2 0 3 6]]
+  ; Each "easy" pattern gives the position of one extra segment - we already
+  ; know which letter corresponds to segments 1, 4 and 5 (top-to-bottom, left-
+  ; to-right)
+  (let [easy    (conj (vec (take 3 (sort-by count patterns))) "abcdefg")
+        missing [2 0 3 6]]
     (loop [index   0
            mapping mapping]
       (if (= index 4)
         mapping
         (recur
          (inc index)
-         (fill-one mapping (nth relevant index) (nth missing index)))))))
+         (fill-one mapping (nth easy index) (nth missing index)))))))
 
 (defn bools->num
   [bools]
