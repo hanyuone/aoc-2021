@@ -1,10 +1,6 @@
 (ns advent.tasks.day07
-  (:require [advent.math :refer [abs]]))
-
-(defn middle
-  "Get the middle element of a sorted list."
-  [nums]
-  (nth nums (quot (count nums) 2)))
+  (:require [advent.math :refer [abs]]
+            [advent.coll :refer [middle]]))
 
 (defn least-fuel-const
   "Given a list of horizontal positions for crabs, determine the least amount

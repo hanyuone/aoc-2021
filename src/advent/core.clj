@@ -8,7 +8,8 @@
             [advent.tasks.day06 :refer [total-fish]]
             [advent.tasks.day07 :refer [least-fuel-const least-fuel-linear]]
             [advent.tasks.day08 :refer [easy-displays displays-sum]]
-            [advent.tasks.day09 :refer [low-points-sum largest-basins low-points basins]])
+            [advent.tasks.day09 :refer [low-points-sum largest-basins]]
+            [advent.tasks.day10 :refer [invalid-scores middle-score]])
   (:gen-class))
 
 ;; Main function
@@ -44,6 +45,7 @@
          (if (= part "1") (easy-displays displays) (displays-sum displays)))
        "9"
        (let [grid (read/txt->grid path)]
-         (if (= part "1")
-           (low-points-sum grid)
-           (largest-basins grid)))))))
+         (if (= part "1") (low-points-sum grid) (largest-basins grid)))
+       "10"
+       (let [lines (read/txt->lines path)]
+         (if (= part "1") (invalid-scores lines) (middle-score lines)))))))

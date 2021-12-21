@@ -24,4 +24,7 @@
   [coll item]
   (some #(= item %) coll))
 
-(includes? [1 2 3 4 5] 6)
+(defn middle
+  "Get the middle element of a list."
+  [nums]
+  (nth nums (quot (count nums) 2)))
