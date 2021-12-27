@@ -9,7 +9,8 @@
             [advent.tasks.day07 :refer [least-fuel-const least-fuel-linear]]
             [advent.tasks.day08 :refer [easy-displays displays-sum]]
             [advent.tasks.day09 :refer [low-points-sum largest-basins]]
-            [advent.tasks.day10 :refer [invalid-scores middle-score]])
+            [advent.tasks.day10 :refer [invalid-scores middle-score]]
+            [advent.tasks.day11 :refer [flashes all-flash]])
   (:gen-class))
 
 ;; Main function
@@ -48,4 +49,7 @@
          (if (= part "1") (low-points-sum grid) (largest-basins grid)))
        "10"
        (let [lines (read/txt->lines path)]
-         (if (= part "1") (invalid-scores lines) (middle-score lines)))))))
+         (if (= part "1") (invalid-scores lines) (middle-score lines)))
+       "11"
+       (let [grid (read/txt->grid path)]
+         (if (= part "1") (flashes grid 100) (all-flash grid)))))))

@@ -1,12 +1,5 @@
 (ns advent.tasks.day09
-  (:require [advent.coll :refer [vector+ includes?]]))
-
-(def NEIGHBOUR-VECS [[-1 0] [0 -1] [0 1] [1 0]])
-
-(defn adjacent
-  "Get the coordinates of all adjacent neighbours."
-  [point]
-  (map #(vector+ point %) NEIGHBOUR-VECS))
+  (:require [advent.coll :refer [adjacent includes?]]))
 
 (defn low-point?
   "Checks if a point on a 2D grid is a low point."
