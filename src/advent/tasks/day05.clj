@@ -1,6 +1,7 @@
 (ns advent.tasks.day05
   (:require [advent.math :refer [abs]]
-            [advent.coll :refer [count-by vector+ vector-]]))
+            [advent.coll :refer [count-by]]
+            [advent.matrix :refer [vector- vector+]]))
 
 (defn normalise
   [[x y]]

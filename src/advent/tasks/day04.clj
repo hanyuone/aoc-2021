@@ -1,5 +1,5 @@
 (ns advent.tasks.day04
-  (:require [advent.coll :refer [transpose]]))
+  (:require [advent.matrix :refer [transpose]]))
 
 (def SIZE 5)
 

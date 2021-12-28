@@ -1,5 +1,6 @@
 (ns advent.tasks.day11
-  (:require [advent.coll :refer [count-by mmap neighbours]]))
+  (:require [advent.coll :refer [count-by]]
+            [advent.matrix :refer [mmap neighbours]]))
 
 (defn unflashed?
   [[value flashed?]]

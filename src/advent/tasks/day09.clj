@@ -1,5 +1,6 @@
 (ns advent.tasks.day09
-  (:require [advent.coll :refer [adjacent includes?]]))
+  (:require [advent.coll :refer [includes?]]
+            [advent.matrix :refer [adjacent]]))
 
 (defn low-point?
   "Checks if a point on a 2D grid is a low point."
