@@ -10,7 +10,8 @@
             [advent.tasks.day08 :refer [easy-displays displays-sum]]
             [advent.tasks.day09 :refer [low-points-sum largest-basins]]
             [advent.tasks.day10 :refer [invalid-scores middle-score]]
-            [advent.tasks.day11 :refer [flashes all-flash]])
+            [advent.tasks.day11 :refer [flashes all-flash]]
+            [advent.tasks.day12 :refer [total-paths]])
   (:gen-class))
 
 ;; Main function
@@ -52,4 +53,7 @@
          (if (= part "1") (invalid-scores lines) (middle-score lines)))
        "11"
        (let [grid (read/txt->grid path)]
-         (if (= part "1") (flashes grid 100) (all-flash grid)))))))
+         (if (= part "1") (flashes grid 100) (all-flash grid)))
+       "12"
+       (let [tunnels (read/txt->tunnels path)]
+         (total-paths tunnels (not= part "1")))))))

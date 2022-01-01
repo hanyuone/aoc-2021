@@ -95,3 +95,10 @@
        (map line->levels)
        vec
        wrap))
+
+(defn txt->tunnels
+  "Converts a .txt file to a list of tunnels between caves."
+  [path]
+  (->> path
+       txt->lines
+       (map #(vec (str/split % #"-")))))
