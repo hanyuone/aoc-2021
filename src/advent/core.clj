@@ -11,7 +11,8 @@
             [advent.tasks.day09 :refer [low-points-sum largest-basins]]
             [advent.tasks.day10 :refer [invalid-scores middle-score]]
             [advent.tasks.day11 :refer [flashes all-flash]]
-            [advent.tasks.day12 :refer [total-paths]])
+            [advent.tasks.day12 :refer [total-paths]]
+            [advent.tasks.day13 :refer [first-fold fold-paper]])
   (:gen-class))
 
 ;; Main function
@@ -56,4 +57,7 @@
          (if (= part "1") (flashes grid 100) (all-flash grid)))
        "12"
        (let [tunnels (read/txt->tunnels path)]
-         (total-paths tunnels (not= part "1")))))))
+         (total-paths tunnels (not= part "1")))
+       "13"
+       (let [[dots folds] (read/txt->paper path)]
+         (if (= part "1") (first-fold dots folds) (fold-paper dots folds)))))))

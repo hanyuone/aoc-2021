@@ -2,6 +2,10 @@
   (:require [clojure.string :as str])
   (:gen-class))
 
+(defn strs->nums
+  [strs]
+  (map #(Integer/parseInt %) strs))
+
 (defn txt->lines
   "Convert a newline-separated .txt file to its lines."
   [path]
@@ -34,7 +38,7 @@
    into draws and individual Bingo boards."
   [path]
   (let [lines  (txt->lines path)
-        draws  (map #(Integer/parseInt %) (str/split (first lines) #","))
+        draws  (strs->nums (str/split (first lines) #","))
         boards (vec (map lines->board (partition 6 (rest lines))))]
     [draws boards]))
 
@@ -77,7 +81,7 @@
 
 (defn line->levels
   [line]
-  (vec (map #(Integer/parseInt %) (str/split line #""))))
+  (vec (strs->nums (str/split line #""))))
 
 (defn wrap
   "Surround a 2D grid of integers with ##Inf."
@@ -102,3 +106,22 @@
   (->> path
        txt->lines
        (map #(vec (str/split % #"-")))))
+
+(defn line->fold
+  [line]
+  (let [matches (first (re-seq #"fold along (.)=(\d+)" line))]
+    [(second matches) (Integer/parseInt (last matches))]))
+
+(defn lines->paper
+  [[dots _ folds]]
+  [(map #(vec (strs->nums (str/split % #","))) dots)
+   (map line->fold folds)])
+
+(defn txt->paper
+  "Converts a .txt file to data representing a piece of transparent paper
+   and any folds made."
+  [path]
+  (->> path
+       txt->lines
+       (partition-by #(empty? %))
+       lines->paper))

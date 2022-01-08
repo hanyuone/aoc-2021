@@ -35,13 +35,13 @@
 
 (defn can-visit?
   [cave path back?]
-  (let [includes-cave? (includes? path cave)]
+  (let [unique? (includes? path cave)]
     (cond
       (= cave "start")               false
       (big-cave? cave)               true
-      (and back? (has-double? path)) (not includes-cave?)
+      (and back? (has-double? path)) unique?
       back?                          true
-      :else                          (not includes-cave?))))
+      :else                          unique?)))
 
 (defn unvisited
   [path back? potential]
