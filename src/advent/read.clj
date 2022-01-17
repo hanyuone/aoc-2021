@@ -125,3 +125,18 @@
        txt->lines
        (partition-by #(empty? %))
        lines->paper))
+
+(defn lines->inserts
+  [lines]
+  (->> lines
+       (map #(rest (re-matches #"(.{2}) -> (.)" %)))
+       flatten
+       (apply hash-map)))
+
+(defn txt->polymer
+  "Converts a .txt file to a polymer, and a list of insertions to be made."
+  [path]
+  (let [lines   (txt->lines path)
+        polymer (first lines)
+        inserts (lines->inserts (drop 2 lines))]
+    [polymer inserts]))

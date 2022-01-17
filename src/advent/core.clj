@@ -12,7 +12,8 @@
             [advent.tasks.day10 :refer [invalid-scores middle-score]]
             [advent.tasks.day11 :refer [flashes all-flash]]
             [advent.tasks.day12 :refer [total-paths]]
-            [advent.tasks.day13 :refer [first-fold fold-paper]])
+            [advent.tasks.day13 :refer [first-fold fold-paper]]
+            [advent.tasks.day14 :refer [polymerise]])
   (:gen-class))
 
 ;; Main function
@@ -60,4 +61,7 @@
          (total-paths tunnels (not= part "1")))
        "13"
        (let [[dots folds] (read/txt->paper path)]
-         (if (= part "1") (first-fold dots folds) (fold-paper dots folds)))))))
+         (if (= part "1") (first-fold dots folds) (fold-paper dots folds)))
+       "14"
+       (let [[polymer inserts] (read/txt->polymer path)]
+         (polymerise polymer inserts (if (= part "1") 10 40)))))))
