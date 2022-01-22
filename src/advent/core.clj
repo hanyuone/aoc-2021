@@ -13,7 +13,8 @@
             [advent.tasks.day11 :refer [flashes all-flash]]
             [advent.tasks.day12 :refer [total-paths]]
             [advent.tasks.day13 :refer [first-fold fold-paper]]
-            [advent.tasks.day14 :refer [polymerise]])
+            [advent.tasks.day14 :refer [polymerise]]
+            [advent.tasks.day15 :refer [generate-grid safest-path]])
   (:gen-class))
 
 ;; Main function
@@ -48,13 +49,13 @@
        (let [displays (read/txt->displays path)]
          (if (= part "1") (easy-displays displays) (displays-sum displays)))
        "9"
-       (let [grid (read/txt->grid path)]
+       (let [grid (read/txt->wrapped path)]
          (if (= part "1") (low-points-sum grid) (largest-basins grid)))
        "10"
        (let [lines (read/txt->lines path)]
          (if (= part "1") (invalid-scores lines) (middle-score lines)))
        "11"
-       (let [grid (read/txt->grid path)]
+       (let [grid (read/txt->wrapped path)]
          (if (= part "1") (flashes grid 100) (all-flash grid)))
        "12"
        (let [tunnels (read/txt->tunnels path)]
@@ -64,4 +65,7 @@
          (if (= part "1") (first-fold dots folds) (fold-paper dots folds)))
        "14"
        (let [[polymer inserts] (read/txt->polymer path)]
-         (polymerise polymer inserts (if (= part "1") 10 40)))))))
+         (polymerise polymer inserts (if (= part "1") 10 40)))
+       "15"
+       (let [grid (read/txt->grid path)]
+         (safest-path grid (not= part "1")))))))

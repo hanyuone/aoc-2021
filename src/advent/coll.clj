@@ -16,3 +16,8 @@
   "Get the middle element of a list."
   [nums]
   (nth nums (quot (count nums) 2)))
+
+(defn swap
+  "Swap two elements in a list."
+  [coll first second]
+  (assoc coll first (coll second) second (coll first)))

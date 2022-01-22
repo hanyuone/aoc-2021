@@ -92,6 +92,13 @@
     (into [] (concat [dummy-row] wrapped-rows [dummy-row]))))
 
 (defn txt->grid
+  [path]
+  (->> path
+       txt->lines
+       (map line->levels)
+       vec))
+
+(defn txt->wrapped
   "Converts a .txt file into a level grid."
   [path]
   (->> path
