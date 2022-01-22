@@ -14,7 +14,7 @@
             [advent.tasks.day12 :refer [total-paths]]
             [advent.tasks.day13 :refer [first-fold fold-paper]]
             [advent.tasks.day14 :refer [polymerise]]
-            [advent.tasks.day15 :refer [generate-grid safest-path]])
+            [advent.tasks.day15 :refer [safest-path]])
   (:gen-class))
 
 ;; Main function
