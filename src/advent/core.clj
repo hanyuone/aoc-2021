@@ -14,7 +14,8 @@
             [advent.tasks.day12 :refer [total-paths]]
             [advent.tasks.day13 :refer [first-fold fold-paper]]
             [advent.tasks.day14 :refer [polymerise]]
-            [advent.tasks.day15 :refer [safest-path]])
+            [advent.tasks.day15 :refer [safest-path]]
+            [advent.tasks.day16 :refer [hex->version-sum eval-hex]])
   (:gen-class))
 
 ;; Main function
@@ -68,4 +69,7 @@
          (polymerise polymer inserts (if (= part "1") 10 40)))
        "15"
        (let [grid (read/txt->grid path)]
-         (safest-path grid (not= part "1")))))))
+         (safest-path grid (not= part "1")))
+       "16"
+       (let [hex (slurp path)]
+         (if (= part "1") (hex->version-sum hex) (eval-hex hex)))))))
