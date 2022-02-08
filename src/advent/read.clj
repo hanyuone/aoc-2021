@@ -147,3 +147,12 @@
         polymer (first lines)
         inserts (lines->inserts (drop 2 lines))]
     [polymer inserts]))
+
+(defn txt->target
+  "Converts a .txt file into the bounds for Day 17's target area."
+  [path]
+  (let [line (slurp path)
+        [x1 x2 y1 y2]
+        (map #(Integer/parseInt %)
+             (rest (re-matches #"target area: x=(-?\d+)..(-?\d+), y=(-?\d+)..(-?\d+)" line)))]
+    [[x1 x2] [y1 y2]]))

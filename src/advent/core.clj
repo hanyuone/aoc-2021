@@ -15,7 +15,8 @@
             [advent.tasks.day13 :refer [first-fold fold-paper]]
             [advent.tasks.day14 :refer [polymerise]]
             [advent.tasks.day15 :refer [safest-path]]
-            [advent.tasks.day16 :refer [hex->version-sum eval-hex]])
+            [advent.tasks.day16 :refer [hex->version-sum eval-hex]]
+            [advent.tasks.day17 :refer [highest-y total-velocities]])
   (:gen-class))
 
 ;; Main function
@@ -72,4 +73,7 @@
          (safest-path grid (not= part "1")))
        "16"
        (let [hex (slurp path)]
-         (if (= part "1") (hex->version-sum hex) (eval-hex hex)))))))
+         (if (= part "1") (hex->version-sum hex) (eval-hex hex)))
+       "17"
+       (let [[target-x target-y] (read/txt->target path)]
+         (if (= part "1") (highest-y target-x target-y) (total-velocities target-x target-y)))))))
